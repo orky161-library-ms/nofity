@@ -1,5 +1,8 @@
+const AWS = require('aws-sdk');
 const amqp = require('amqplib/callback_api');
 const {channelConsume} = require("../queues/rabbit/notify");
+
+AWS.config.update({region: process.env.REGION});
 
 function createRabbitConnection (){
     amqp.connect(`amqp://amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@${process.env.RABBIT_URL}?heartbeat=60`, async (err, conn) => {

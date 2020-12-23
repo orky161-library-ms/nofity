@@ -1,5 +1,5 @@
-const {sendMail} = require("../../controller/notify")
 const {closeOnErr, processMsg} = require("./utils")
+const {sendEmail} = require("../../ses/index")
 
 async function channelConsume(conn){
     conn.createChannel(function(err, ch) {
@@ -26,7 +26,7 @@ function sendEmailQueue (conn, ch){
 }
 
 function sendEmailWorker(msg, cb) {
-    console.log("PDF processing of ", msg.content.toString());
+    sendEmail(JSON.parse(msg.content.toString()))
     cb(true);
 }
 
