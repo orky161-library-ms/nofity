@@ -1,0 +1,4 @@
+name: clients
+port: 30010
+deployment:
+  replicas: 3
