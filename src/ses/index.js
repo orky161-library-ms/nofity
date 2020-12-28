@@ -1,9 +1,10 @@
 const AWS = require('aws-sdk');
 
-function sendEmail (email, msg){
+function sendEmail ({email, msg}){
+
     const params = {
         Destination: {
-            ToAddresses: [email]
+            ToAddresses: ["orky161@gmail.com"]
         },
         Message: {
             Body: {
@@ -17,15 +18,11 @@ function sendEmail (email, msg){
                 Data: 'Library.io'
             }
         },
-        Source: 'library@io.com',
+        Source: 'orky161@gmail.com',
     };
     const sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
 
-    sendPromise.then((data) => {
-            console.log(data.MessageId);
-        }).catch((err) => {
-            console.error(err, err.stack);
-        });
+    return sendPromise
 }
 
 module.exports ={

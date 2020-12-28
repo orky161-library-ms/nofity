@@ -5,7 +5,7 @@ const {channelConsume} = require("../queues/rabbit/notify");
 AWS.config.update({region: process.env.REGION});
 
 function createRabbitConnection (){
-    amqp.connect(`amqp://amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@${process.env.RABBIT_URL}?heartbeat=60`, async (err, conn) => {
+    amqp.connect(process.env.RABBIT_URL + "?heartbeat=60", async (err, conn) => {
         if (err) {
             console.error("[AMQP]", err.message);
             return setTimeout(createRabbitConnection, 1500 + (Math.random() * 3000));

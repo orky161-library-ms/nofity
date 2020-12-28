@@ -26,8 +26,9 @@ function sendEmailQueue (conn, ch){
 }
 
 function sendEmailWorker(msg, cb) {
-    sendEmail(JSON.parse(msg.content.toString()))
-    cb(true);
+    sendEmail(JSON.parse(msg.content.toString())).then(()=>{
+        cb(true);
+    })
 }
 
 module.exports ={

@@ -1,5 +1,6 @@
 name: clients
 port: 30010
+private: true
 deployment:
   replicas: 3
   env:
